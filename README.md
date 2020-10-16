@@ -12,4 +12,8 @@ Kakao Talk Clone Project For Spring Boot
 - JPA
 - MySQL
 
-## ERD
+## Diagram
+### Class Diagram
+![Katalk Class Diagram](https://user-images.githubusercontent.com/56301069/96283272-ec9d7880-1016-11eb-8d5c-15f743f47e89.jpg)
+
+### ERD
