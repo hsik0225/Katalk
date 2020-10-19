@@ -1,10 +1,8 @@
 package com.naru.katalk.domain;
 
-public class Member implements User {
+public class Member {
 
-    public void logOut() {
-
-    }
+    private MemberInformation memberInfo;
 
     public void changePassword() {
 
