@@ -20,7 +20,7 @@ public class Member {
 
     }
 
-    public void exitRoom() {
+    public void readMessage() {
 
     }
 
@@ -28,7 +28,7 @@ public class Member {
 
     }
 
-    public void readMessage() {
+    public void exitRoom() {
 
     }
 }
