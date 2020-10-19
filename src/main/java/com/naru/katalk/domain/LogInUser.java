@@ -2,7 +2,13 @@ package com.naru.katalk.domain;
 
 public class LogInUser extends User {
 
-    private Profile profile;
+    public LogInUser() {
+        role = Role.MEMBER;
+    }
+
+    public void logOut() {
+
+    }
 
     public void changePassword() {
 
