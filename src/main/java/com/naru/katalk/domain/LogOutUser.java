@@ -2,11 +2,15 @@ package com.naru.katalk.domain;
 
 public class LogOutUser extends User {
 
-    public static void logIn() {
+    public LogOutUser() {
+        role = Role.GUEST;
+    }
+
+    public static void logIn(LoginInformation loginInfo) {
         System.out.println("Logged In!");
     }
 
-    public static void register(String confirmPassword, Profile profile) {
+    public static void register(UserInformation userInfo) {
         System.out.println("Registered!");
     }
 }
