@@ -1,14 +1,20 @@
 package com.naru.katalk.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.persistence.Embeddable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@Embeddable
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SignManager {
 
     @Email
@@ -33,5 +39,12 @@ public class SignManager {
 
     public void hashPassword() {
         this.password = BCrypt.hashpw(this.password, BCrypt.gensalt());
+    }
+
+    public static SignManager getTestInstance() {
+        return new SignManager(
+                "test@naru.com",
+                "test1234",
+                "test1234");
     }
 }
