@@ -1,5 +1,8 @@
 package com.naru.katalk.domain;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class ProfileManager {
 
     // 대화명
