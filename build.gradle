@@ -3,7 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 
     // asciidoc 파일을 html 파일로 processing 해주는 플러그인
-    id "org.asciidoctor.convert" version "1.5.9.2"
+    id "org.asciidoctor.jvm.convert" version "3.2.0"
 
     id 'java'
 }
@@ -16,6 +16,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    asciidoctorExtensions
 }
 
 repositories {
@@ -25,10 +26,10 @@ repositories {
 dependencies {
 
     // asciidoctor 설정에 spring-restdocs-asciidoctor 의존성을 추가한다.
-    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 
     // mockMvc 테스트를 통해 API adoc 파일을 생성해주도록 하는 라이브러리
-    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
     // 패스워드 암호화
     implementation 'org.mindrot:jbcrypt:0.4'
@@ -74,6 +75,8 @@ test {
 
 asciidoctor {
 
+    configurations 'asciidoctorExtensions'
+
     // 입력 값으로 snippets 디렉토리 설정하기
     inputs.dir snippetsDir
 
@@ -83,9 +86,22 @@ asciidoctor {
 
 asciidoctor.doFirst {
     println "=====start asciidoctor"
-    //asciidoctor 실행전 기존에 생성된 API 문서 삭제
+    // asciidoctor 실행전 기존에 생성된 API 문서 삭제
     delete file('src/main/resources/static/docs')
 }
+
 asciidoctor.doLast {
     println "=====finish asciidoctor"
+}
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+    from file("build/asciidoc/html5")
+
+    // resources/static/docs 로 복사하여 서버가 돌아가고 있을 때 /docs/index.html 로 접속하면 볼 수 있음
+    into file("src/main/resources/static/docs")
+}
+
+build {
+    dependsOn copyDocument
 }
