@@ -6,15 +6,17 @@ import com.naru.katalk.service.GuestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @RequiredArgsConstructor
+@RequestMapping("/users")
+@RestController
 public class GuestController {
 
     private final GuestService guestService;
 
-    @PostMapping
+    @PostMapping(path = "/login")
     public void logIn(@RequestBody SignManager signManager) {
         guestService.login(signManager);
     }
@@ -24,3 +26,4 @@ public class GuestController {
         guestService.register(memberManager);
     }
 }
+
