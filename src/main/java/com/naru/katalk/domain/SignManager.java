@@ -6,6 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Getter
 public class SignManager {
@@ -13,11 +14,9 @@ public class SignManager {
     @Email
     private String email;
 
-    // null, "", " " 모두 허용하지 않는다
-    @NotBlank
-
     // 소문자 영어, 숫자가 1번씩 포함되어야 하며 비밀번호는 대/소문자, 숫자만이 가능하다
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9]*$")
+    @Size(min = 6, max = 16)
     private String password;
 
     private String confirmPassword;
