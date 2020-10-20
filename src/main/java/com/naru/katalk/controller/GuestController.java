@@ -1,7 +1,7 @@
 package com.naru.katalk.controller;
 
-import com.naru.katalk.domain.LoginInformation;
-import com.naru.katalk.domain.MemberInformation;
+import com.naru.katalk.domain.SignManager;
+import com.naru.katalk.domain.MemberManager;
 import com.naru.katalk.service.GuestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +15,12 @@ public class GuestController {
     private GuestService guestService;
 
     @PostMapping
-    public void logIn(@RequestBody LoginInformation loginInfo) {
-        guestService.login(loginInfo);
+    public void logIn(@RequestBody SignManager signManager) {
+        guestService.login(signManager);
     }
 
     @PostMapping
-    public void register(@RequestBody MemberInformation memberInfo) {
-        guestService.register(memberInfo);
+    public void register(@RequestBody MemberManager memberManager) {
+        guestService.register(memberManager);
     }
 }
