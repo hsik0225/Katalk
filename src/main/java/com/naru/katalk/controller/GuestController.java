@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GuestController {
 
-    private GuestService guestService;
+    private final GuestService guestService;
 
     @PostMapping
     public void logIn(@RequestBody SignManager signManager) {

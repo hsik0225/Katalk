@@ -1,6 +1,10 @@
 plugins {
     id 'org.springframework.boot' version '2.3.4.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+
+    // asciidoc 파일을 html 파일로 processing 해주는 플러그인
+    id "org.asciidoctor.convert" version "1.5.9.2"
+
     id 'java'
 }
 
@@ -19,6 +23,13 @@ repositories {
 }
 
 dependencies {
+
+    // asciidoctor 설정에 spring-restdocs-asciidoctor 의존성을 추가한다.
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+
+    // mockMvc 테스트를 통해 API adoc 파일을 생성해주도록 하는 라이브러리
+    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
     // 패스워드 암호화
     implementation 'org.mindrot:jbcrypt:0.4'
 
@@ -49,6 +60,32 @@ dependencies {
     }
 }
 
+// 생성되는 스니펫의 저장 위치를 설정
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
 test {
     useJUnitPlatform()
+
+    // 결과물인 스니펫 디렉토리를 추가
+    outputs.dir snippetsDir
+}
+
+asciidoctor {
+
+    // 입력 값으로 snippets 디렉토리 설정하기
+    inputs.dir snippetsDir
+
+    // task를 test task에 의존하게 만들어 문서가 생성되기 전에 테스트가 실행된다
+    dependsOn test
+}
+
+asciidoctor.doFirst {
+    println "=====start asciidoctor"
+    //asciidoctor 실행전 기존에 생성된 API 문서 삭제
+    delete file('src/main/resources/static/docs')
+}
+asciidoctor.doLast {
+    println "=====finish asciidoctor"
 }
