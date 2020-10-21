@@ -46,7 +46,7 @@ public class GuestService {
 
     private void checkDuplicateEmail(SignManager signManager) {
         if (findOptMemberByEmail(signManager).isPresent()) {
-            throw new DuplicateEmailException("중복된 이메일입니다");
+            throw new DuplicateEmailException("해당 이메일로 가입된 아이디가 존재합니다");
         }
     }
 }
