@@ -1,15 +1,15 @@
 package com.naru.katalk.service;
 
-import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.MemberManager;
+import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.exception.DuplicateEmailException;
+import com.naru.katalk.exception.LoginException;
 import com.naru.katalk.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -38,10 +38,7 @@ public class GuestService {
     }
 
     private Member findMemberByEmail(SignManager signManager) {
-        return findOptMemberByEmail(signManager)
-                .orElseThrow(
-                () -> new EntityNotFoundException("이 이메일로 가입된 아이디가 존재하지 않습니다")
-        );
+        return findOptMemberByEmail(signManager).orElseThrow(LoginException::new);
     }
 
     private void checkDuplicateEmail(SignManager signManager) {
