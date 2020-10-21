@@ -34,7 +34,7 @@ public class SignManager {
 
     public void checkPassword(SignManager signManager) {
         if (!BCrypt.checkpw(signManager.password, this.password)) {
-            throw new IllegalArgumentException("존재하지 않는 이메일이거나 비밀번호가 일치하지 않습니다!");
+            throw new IllegalArgumentException("존재하지 않는 이메일이거나 비밀번호가 일치하지 않습니다");
         }
     }
 
