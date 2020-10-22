@@ -1,23 +1,32 @@
 package com.naru.katalk.common;
 
+import org.springframework.http.HttpStatus;
+
+import javax.persistence.Transient;
+
 public class Response {
 
-    protected String message;
+    @Transient
+    protected final HttpStatus httpStatus;
 
-    protected int statusCode;
+    protected final String message;
 
-    protected String statusText;
+    protected final String statusCodeAndText;
 
     protected Object body;
 
-    public Response(ResponseStatusCode code) {
+    public Response(final ResponseStatusCode code) {
         this.message = code.getMessage();
-        this.statusCode = code.getCode();
-        this.statusText = code.getStatusText();
+        this.httpStatus = code.getHttpStatus();
+        this.statusCodeAndText = this.httpStatus.value() + " " + this.httpStatus.getReasonPhrase();
     }
 
-    public Response(ResponseStatusCode code, Object body) {
+    public Response(final ResponseStatusCode code, final Object body) {
         this(code);
         this.body = body;
+    }
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
 }
