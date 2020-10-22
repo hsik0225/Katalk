@@ -8,7 +8,6 @@ spring:
     url: jdbc:mysql://localhost:3306/ever?serverTimezone=UTC&characterEncoding=UTF-8
     username: ever
     password: asdqwe1!
-
 ---
 spring:
   profiles: local

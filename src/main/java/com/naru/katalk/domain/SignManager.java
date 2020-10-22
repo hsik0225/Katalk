@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import com.naru.katalk.exception.LoginException;
 
@@ -19,6 +20,7 @@ import com.naru.katalk.exception.LoginException;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class SignManager {
 
     @Email
@@ -29,7 +31,8 @@ public class SignManager {
     @Size(min = 6, max = 16)
     private String password;
 
-    private String confirmPassword;
+    // persist 하지 않기 위해 transient 선언
+    private transient String confirmPassword;
 
     public boolean checkConfirmPassword() {
         return this.password.equals(confirmPassword);

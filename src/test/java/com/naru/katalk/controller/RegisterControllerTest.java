@@ -32,8 +32,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-@WebMvcTest(RegisterController.class)
-@Import(ResultHandlerConfiguration.class)
+@WebMvcTest(controllers = RegisterController.class)
+@Import({ResultHandlerConfiguration.class})
 @AutoConfigureRestDocs
 class RegisterControllerTest {
 

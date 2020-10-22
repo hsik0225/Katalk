@@ -1,7 +1,8 @@
 package com.naru.katalk.common;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.http.HttpStatus;
 
@@ -11,15 +12,17 @@ import lombok.Getter;
 
 // NULL 값은 데이터 바인딩하지 않는다
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
-// `transient` 속성을 데이터 바인딩하지 않기 위해 데이터 매핑 법칙은 `Getter`가 아니라 필드로 변경한다
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NON_PRIVATE)
 public class Response {
 
-    protected transient final HttpStatus httpStatus;
+    // httpStatus를 데이터 매핑에서 제외
+    @JsonIgnore
+    protected final HttpStatus httpStatus;
 
     protected final String message;
 
+    // 여기에선 httpStatus와 구분하기 위하여 statusCodeAndText라는 변수명을 사용하지만
+    // 응답에선 status가 더 명확하므로 JsonPropert로 `status`로 설정
+    @JsonProperty(value = "status")
     protected final String statusCodeAndText;
 
     protected Object body;
