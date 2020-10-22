@@ -12,13 +12,10 @@ public enum ErrorCode implements ResponseStatusCode {
 
     private final String message;
 
-    private final int code;
+    private final HttpStatus httpStatus;
 
-    private final String statusText;
-
-    ErrorCode(String message, HttpStatus httpStatus) {
+    ErrorCode(final String message, final HttpStatus httpStatus) {
         this.message = message;
-        this.code = httpStatus.value();
-        this.statusText = httpStatus.getReasonPhrase();
+        this.httpStatus = httpStatus;
     }
 }

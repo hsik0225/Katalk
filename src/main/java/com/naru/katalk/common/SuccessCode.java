@@ -7,17 +7,15 @@ import org.springframework.http.HttpStatus;
 public enum SuccessCode implements ResponseStatusCode {
 
     // Member
-    LOGGED_IN("로그인 성공", HttpStatus.CREATED);
+    LOGGED_IN("로그인 성공", HttpStatus.OK),
+    SIGNED_UP("회원가입 성공", HttpStatus.CREATED);
 
     private final String message;
 
-    private final int code;
+    private final HttpStatus httpStatus;
 
-    private final String statusText;
-
-    SuccessCode(String message, HttpStatus httpStatus) {
+    SuccessCode(final String message, final HttpStatus httpStatus) {
         this.message = message;
-        this.code = httpStatus.value();
-        this.statusText = httpStatus.getReasonPhrase();
+        this.httpStatus = httpStatus;
     }
 }
