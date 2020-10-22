@@ -33,7 +33,7 @@ public class SignManager {
         return this.password.equals(confirmPassword);
     }
 
-    public void checkPassword(SignManager signManager) {
+    public void checkPassword(final SignManager signManager) {
         if (!BCrypt.checkpw(signManager.password, this.password)) {
             throw new LoginException();
         }
