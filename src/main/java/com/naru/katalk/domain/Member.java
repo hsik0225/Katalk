@@ -20,11 +20,11 @@ public class Member {
     @Embedded
     private MemberManager memberManager;
 
-    public Member(MemberManager memberManager) {
+    public Member(final MemberManager memberManager) {
         this.memberManager = memberManager;
     }
 
-    public void checkPassword(SignManager signManager) {
+    public void checkPassword(final SignManager signManager) {
         this.memberManager.getSignManager().checkPassword(signManager);
     }
 
