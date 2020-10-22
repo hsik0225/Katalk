@@ -15,6 +15,11 @@
 .idea/vcs.xml
 .idea/dataSources.xml
 
+# CheckStyle
+.idea/codeStyles
+.idea/checkstyle-idea.xml
+.idea/jsLibraryMappings.xml
+
 # Generated files
 .idea/**/contentModel.xml
 
@@ -40,7 +45,7 @@
 .idea/jarRepositories.xml
 # .idea/modules.xml
 # .idea/*.iml
-# .idea/modules
+.idea/modules
 # *.iml
 # *.ipr
 
