@@ -1,7 +1,8 @@
 package com.naru.katalk.common;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
+
+import lombok.Getter;
 
 @Getter
 public enum ErrorCode implements ResponseStatusCode {

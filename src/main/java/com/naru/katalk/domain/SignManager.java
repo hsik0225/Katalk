@@ -1,16 +1,18 @@
 package com.naru.katalk.domain;
 
-import com.naru.katalk.exception.LoginException;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.mindrot.jbcrypt.BCrypt;
-
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.mindrot.jbcrypt.BCrypt;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import com.naru.katalk.exception.LoginException;
 
 @Embeddable
 @Getter

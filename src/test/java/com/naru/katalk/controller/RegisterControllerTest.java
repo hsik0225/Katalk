@@ -1,12 +1,5 @@
 package com.naru.katalk.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.naru.katalk.config.ResultHandlerConfiguration;
-import com.naru.katalk.domain.MemberManager;
-import com.naru.katalk.domain.ProfileManager;
-import com.naru.katalk.domain.SignManager;
-import com.naru.katalk.service.GuestService;
-import com.naru.katalk.util.MockMvcPostHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,8 +14,18 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.naru.katalk.util.TestAttribute.*;
-import static org.mockito.BDDMockito.given;
+import com.naru.katalk.config.ResultHandlerConfiguration;
+import com.naru.katalk.domain.MemberManager;
+import com.naru.katalk.domain.ProfileManager;
+import com.naru.katalk.domain.SignManager;
+import com.naru.katalk.service.GuestService;
+import com.naru.katalk.util.MockMvcPostHelper;
+
+import static com.naru.katalk.util.TestAttribute.CONFIRM_PASSWORD;
+import static com.naru.katalk.util.TestAttribute.EMAIL;
+import static com.naru.katalk.util.TestAttribute.PASSWORD;
+import static com.naru.katalk.util.TestAttribute.PICTURE;
+import static com.naru.katalk.util.TestAttribute.USER_NAME;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -43,22 +46,18 @@ class RegisterControllerTest {
     @MockBean
     private GuestService guestService;
 
-    private static SignManager signManager;
-
-    private static ProfileManager profileManager;
-
     private static MemberManager memberManager;
 
     @BeforeAll
     public static void setUp() {
-        signManager = SignManager
+        SignManager signManager = SignManager
                 .builder()
                 .email(EMAIL.getAttribute())
                 .password(PASSWORD.getAttribute())
                 .confirmPassword(CONFIRM_PASSWORD.getAttribute())
                 .build();
 
-        profileManager = ProfileManager
+        ProfileManager profileManager = ProfileManager
                 .builder()
                 .userName(USER_NAME.getAttribute())
                 .picture(PICTURE.getAttribute())
@@ -68,7 +67,7 @@ class RegisterControllerTest {
     }
 
     @Test
-    public void 회원가입_성공() throws Exception {
+    public void 회원가입() throws Exception {
 
         this.mockMvc
                 .perform(MockMvcPostHelper.postObject("/users", memberManager))
@@ -76,11 +75,16 @@ class RegisterControllerTest {
                 .andDo(print())
                 .andDo(restDocumentation.document(
                         requestFields(
-                                fieldWithPath("email").type(JsonFieldType.STRING).description("The user's email address"),
-                                fieldWithPath("password").type(JsonFieldType.STRING).description("The user's password"),
-                                fieldWithPath("confirmPassword").type(JsonFieldType.STRING).description("The user's confirm password"),
-                                fieldWithPath("username").type(JsonFieldType.STRING).description("The name used chatting room"),
-                                fieldWithPath("picture").type(JsonFieldType.STRING).description("The picture of profile")
+                                fieldWithPath("signManager.email").type(JsonFieldType.STRING)
+                                        .description("이메일"),
+                                fieldWithPath("signManager.password").type(JsonFieldType.STRING)
+                                        .description("비밀번호"),
+                                fieldWithPath("signManager.confirmPassword")
+                                        .type(JsonFieldType.STRING).description("비밀번호 확인"),
+                                fieldWithPath("profileManager.userName").type(JsonFieldType.STRING)
+                                        .description("채팅방에서 사용하는 대화명"),
+                                fieldWithPath("profileManager.picture").type(JsonFieldType.STRING)
+                                        .description("채팅방에서 사용할 사진 URL")
                         )
                 ));
     }

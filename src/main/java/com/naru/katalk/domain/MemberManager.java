@@ -1,12 +1,12 @@
 package com.naru.katalk.domain;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 
 @Embeddable
 @Getter

@@ -13,7 +13,8 @@ public class ObjectToJsonConverter {
         OBJECT_MAPPER.configure(SerializationFeature.INDENT_OUTPUT, true);
     }
 
-    private ObjectToJsonConverter() {}
+    private ObjectToJsonConverter() {
+    }
 
     public static String objectToJson(Object obj) throws JsonProcessingException {
         return OBJECT_MAPPER.writeValueAsString(obj);

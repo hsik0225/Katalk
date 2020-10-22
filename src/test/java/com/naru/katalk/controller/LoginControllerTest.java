@@ -1,11 +1,5 @@
 package com.naru.katalk.controller;
 
-import com.naru.katalk.config.ResultHandlerConfiguration;
-import com.naru.katalk.domain.SignManager;
-import com.naru.katalk.exception.LoginException;
-import com.naru.katalk.exception.advice.UserControllerAdvice;
-import com.naru.katalk.service.GuestService;
-import com.naru.katalk.util.MockMvcPostHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
@@ -21,9 +14,14 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.naru.katalk.config.ResultHandlerConfiguration;
+import com.naru.katalk.domain.SignManager;
+import com.naru.katalk.exception.advice.UserControllerAdvice;
+import com.naru.katalk.service.GuestService;
+import com.naru.katalk.util.MockMvcPostHelper;
+
 import static com.naru.katalk.util.TestAttribute.EMAIL;
 import static com.naru.katalk.util.TestAttribute.PASSWORD;
-import static org.mockito.Mockito.doThrow;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -48,7 +46,8 @@ public class LoginControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired UserControllerAdvice userControllerAdvice;
+    @Autowired
+    UserControllerAdvice userControllerAdvice;
 
     @Autowired
     private RestDocumentationResultHandler restDocumentation;
@@ -76,9 +75,12 @@ public class LoginControllerTest {
                 .andDo(print())
                 .andDo(restDocumentation.document(
                         requestFields(
-                                fieldWithPath("email").type(JsonFieldType.STRING).description("The user's email address"),
-                                fieldWithPath("password").type(JsonFieldType.STRING).description("The user's password"),
-                                fieldWithPath("confirmPassword").type(JsonFieldType.STRING).ignored()
+                                fieldWithPath("email").type(JsonFieldType.STRING)
+                                        .description("이메일"),
+                                fieldWithPath("password").type(JsonFieldType.STRING)
+                                        .description("비밀번호"),
+                                fieldWithPath("confirmPassword").type(JsonFieldType.STRING)
+                                        .ignored()
                         )
                 ));
     }

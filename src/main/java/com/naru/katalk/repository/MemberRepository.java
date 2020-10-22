@@ -1,9 +1,10 @@
 package com.naru.katalk.repository;
 
-import com.naru.katalk.domain.Member;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.naru.katalk.domain.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 

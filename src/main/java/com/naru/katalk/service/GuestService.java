@@ -1,16 +1,18 @@
 package com.naru.katalk.service;
 
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
+
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.MemberManager;
 import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.exception.DuplicateEmailException;
 import com.naru.katalk.exception.LoginException;
 import com.naru.katalk.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
