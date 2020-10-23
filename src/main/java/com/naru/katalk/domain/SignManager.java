@@ -50,8 +50,12 @@ public class SignManager {
         }
     }
 
-    public void hashPassword() {
-        this.password = BCrypt.hashpw(this.password, BCrypt.gensalt());
+    // 불변 객체임을 보장하기 위해 this.password = BCrypt.hashpw(this.password, BCrypt.gensalt()); 하지 않고
+    // new SignManager로 새로운 객체를 생성하여 반환
+    public static SignManager hashPassword(SignManager signManager) {
+        String hashPassword = BCrypt.hashpw(signManager.password, BCrypt.gensalt());
+
+        return new SignManager(signManager.email, hashPassword, signManager.confirmPassword);
     }
 
     public static SignManager getLoginTestInstance() {
