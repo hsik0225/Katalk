@@ -26,4 +26,12 @@ public class MemberManager {
     public static MemberManager getTestInstance() {
         return new MemberManager(SignManager.getTestInstance(), ProfileManager.getTestInstance());
     }
+
+    public static MemberManager create(SignManager signManager, ProfileManager profileManager) {
+        return new MemberManager(signManager, profileManager);
+    }
+
+    public MemberManager create(SignManager signManager) {
+        return new MemberManager(signManager, this.profileManager);
+    }
 }
