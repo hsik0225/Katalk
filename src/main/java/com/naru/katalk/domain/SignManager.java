@@ -23,6 +23,12 @@ import com.naru.katalk.exception.LoginException;
 @ToString
 public class SignManager {
 
+    private static final String EMAIL = "test@naru.com";
+
+    private static final String PASSWORD = "test1234";
+
+    private static final String CONFIRM_PASSWORD = "test1234";
+
     @Email
     private String email;
 
@@ -46,5 +52,22 @@ public class SignManager {
 
     public void hashPassword() {
         this.password = BCrypt.hashpw(this.password, BCrypt.gensalt());
+    }
+
+    public static SignManager getLoginTestInstance() {
+        return SignManager
+                .builder()
+                .email(EMAIL)
+                .password(PASSWORD)
+                .build();
+    }
+
+    public static SignManager getTestInstance() {
+        return SignManager
+                .builder()
+                .email(EMAIL)
+                .password(PASSWORD)
+                .confirmPassword(CONFIRM_PASSWORD)
+                .build();
     }
 }

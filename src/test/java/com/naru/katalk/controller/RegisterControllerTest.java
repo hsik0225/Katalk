@@ -1,6 +1,5 @@
 package com.naru.katalk.controller;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.naru.katalk.config.ResultHandlerConfiguration;
 import com.naru.katalk.domain.MemberManager;
-import com.naru.katalk.domain.ProfileManager;
-import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.service.GuestService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
-import static com.naru.katalk.util.TestAttribute.CONFIRM_PASSWORD;
-import static com.naru.katalk.util.TestAttribute.EMAIL;
-import static com.naru.katalk.util.TestAttribute.CHAT_NAME;
-import static com.naru.katalk.util.TestAttribute.PASSWORD;
-import static com.naru.katalk.util.TestAttribute.PICTURE;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -46,28 +38,10 @@ class RegisterControllerTest {
     @MockBean
     private GuestService guestService;
 
-    private static MemberManager memberManager;
-
-    @BeforeAll
-    public static void setUp() {
-        SignManager signManager = SignManager
-                .builder()
-                .email(EMAIL.getAttribute())
-                .password(PASSWORD.getAttribute())
-                .confirmPassword(CONFIRM_PASSWORD.getAttribute())
-                .build();
-
-        ProfileManager profileManager = ProfileManager
-                .builder()
-                .chatName(CHAT_NAME.getAttribute())
-                .picture(PICTURE.getAttribute())
-                .build();
-
-        memberManager = new MemberManager(signManager, profileManager);
-    }
-
     @Test
     public void 회원가입() throws Exception {
+
+        MemberManager memberManager = MemberManager.getTestInstance();
 
         this.mockMvc
                 .perform(MockMvcPostHelper.postObject("/users", memberManager))

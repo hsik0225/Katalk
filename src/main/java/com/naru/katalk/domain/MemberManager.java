@@ -22,4 +22,8 @@ public class MemberManager {
 
     @Embedded
     private ProfileManager profileManager;
+
+    public static MemberManager getTestInstance() {
+        return new MemberManager(SignManager.getTestInstance(), ProfileManager.getTestInstance());
+    }
 }

@@ -1,6 +1,5 @@
 package com.naru.katalk.controller;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,6 @@ import com.naru.katalk.exception.advice.UserControllerAdvice;
 import com.naru.katalk.service.GuestService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
-import static com.naru.katalk.util.TestAttribute.EMAIL;
-import static com.naru.katalk.util.TestAttribute.PASSWORD;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -55,19 +52,10 @@ public class LoginControllerTest {
     @MockBean
     private GuestService guestService;
 
-    private static SignManager signManager;
-
-    @BeforeAll
-    public static void setUp() {
-        signManager = SignManager
-                .builder()
-                .email(EMAIL.getAttribute())
-                .password(PASSWORD.getAttribute())
-                .build();
-    }
-
     @Test
     public void 로그인() throws Exception {
+
+        final SignManager signManager = SignManager.getLoginTestInstance();
 
         this.mockMvc
                 .perform(MockMvcPostHelper.postObject("/users/login", signManager))
