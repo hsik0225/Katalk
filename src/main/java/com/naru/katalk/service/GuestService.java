@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.MemberManager;
-import com.naru.katalk.domain.ProfileManager;
 import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.exception.DuplicateEmailException;
 import com.naru.katalk.exception.LoginException;

@@ -10,13 +10,10 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 // 상속하여 새로운 관련 인스턴스를 생성하지 못하도록 설정
 public final class ErrorResponse extends Response {
 
-    // FieldError를 생성하지 않은 상태로 ErrorResponse를 생성할 수 없도록 한다
+    // 생성자를 private을 만들어 불변 객체로 만든다
     private ErrorResponse(final ErrorCode code) {
         super(code);
     }
-
-    // 뒤에 받는 Object를 BindingResult로 받을지 List<FieldError>로 받을지 선택하기 위하여
-    // pviate 생성자로 설정한다
 
     // 만약 생성자를 그대로 사용한다면 어떤 클래스인지 알기 위하여 instanceof 를 사용해야 한다
     // ex. BindingResult 클래스가 들어왔을 경우 bindingResult instanceof BindingResult
