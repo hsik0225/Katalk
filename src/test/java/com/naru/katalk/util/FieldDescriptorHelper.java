@@ -10,7 +10,8 @@ import static org.springframework.util.StringUtils.collectionToDelimitedString;
 
 public class FieldDescriptorHelper {
 
-    public static FieldDescriptor getFieldDescriptor(String path, String description, boolean isOptional) {
+    public static FieldDescriptor getFieldDescriptor(String path, String description,
+                                                     boolean isOptional) {
         FieldDescriptor fieldDescriptor = fieldWithPath(path).type(JsonFieldType.STRING)
                 .description(description)
                 .attributes(key("constraint").value(""));
@@ -19,7 +20,7 @@ public class FieldDescriptorHelper {
     }
 
     public static <T> FieldDescriptor getStringFieldDescriptor(String path, String description,
-                                                                Class<T> clazz) {
+                                                               Class<T> clazz) {
         String property = path.contains("\\.") ? path.split("\\.")[1] : path;
         ConstraintDescriptions descriptions = new ConstraintDescriptions(clazz);
 
