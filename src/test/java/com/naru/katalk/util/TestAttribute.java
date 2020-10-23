@@ -8,7 +8,7 @@ public enum TestAttribute {
     CONFIRM_PASSWORD("test1234"),
 
     // register
-    USER_NAME("naru"),
+    CHAT_NAME("naru"),
     PICTURE("s3.com");
 
     private final String attribute;

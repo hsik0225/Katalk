@@ -17,7 +17,7 @@ import lombok.ToString;
 public class ProfileManager {
 
     // 대화명
-    private String userName;
+    private String chatName;
 
     // 사진 URL
     private String picture;

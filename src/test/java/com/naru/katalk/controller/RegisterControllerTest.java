@@ -23,9 +23,9 @@ import com.naru.katalk.util.MockMvcPostHelper;
 
 import static com.naru.katalk.util.TestAttribute.CONFIRM_PASSWORD;
 import static com.naru.katalk.util.TestAttribute.EMAIL;
+import static com.naru.katalk.util.TestAttribute.CHAT_NAME;
 import static com.naru.katalk.util.TestAttribute.PASSWORD;
 import static com.naru.katalk.util.TestAttribute.PICTURE;
-import static com.naru.katalk.util.TestAttribute.USER_NAME;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -59,7 +59,7 @@ class RegisterControllerTest {
 
         ProfileManager profileManager = ProfileManager
                 .builder()
-                .userName(USER_NAME.getAttribute())
+                .chatName(CHAT_NAME.getAttribute())
                 .picture(PICTURE.getAttribute())
                 .build();
 
