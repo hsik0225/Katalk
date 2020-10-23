@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.MemberManager;
+import com.naru.katalk.domain.ProfileManager;
 import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.exception.DuplicateEmailException;
 import com.naru.katalk.exception.LoginException;
@@ -21,16 +22,19 @@ public class GuestService {
     private final MemberRepository memberRepository;
 
     public void login(final SignManager signManager) {
-        Member member = findMemberByEmail(signManager);
+        final Member member = findMemberByEmail(signManager);
         member.checkPassword(signManager);
     }
 
     @Transactional
-    public void register(final MemberManager memberManager) {
-        Member member = new Member(memberManager);
-        final SignManager signManager = member.getMemberManager().getSignManager();
+    public void register(MemberManager memberManager) {
+        SignManager signManager = memberManager.getSignManager();
         checkDuplicateEmail(signManager);
-        signManager.hashPassword();
+
+        signManager = SignManager.hashPassword(signManager);
+        memberManager = memberManager.create(signManager);
+
+        Member member = new Member(memberManager);
         memberRepository.save(member);
     }
 
