@@ -29,7 +29,7 @@ public class FieldDescriptorHelper {
 
         ConstraintDescriptions descriptions = new ConstraintDescriptions(clazz);
 
-        // collectionToDelimitedString : 콜렉션을 delimiter 로 연결한다
+        // collectionToDelimitedString : 컬렉션을 delimiter 로 연결한다
         String constraintMessages =
                 collectionToDelimitedString(descriptions.descriptionsForProperty(property), ". ");
 
