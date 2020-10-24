@@ -1,0 +1,72 @@
+= Katalk API Document
+hsik0225.github.io
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:site-url: /build/asciidoc/html5
+
+== Introduction
+
+Katalk Spring REST Docs API
+
+== Common
+
+API에 관계없이 아래 사항을 지켜주셔야 합니다.
+
+== Domain
+
+|===
+| 환경 | domain
+
+| 개발 서버
+| `dev.localhost`
+
+| 운영 서버
+| `real.localhost`
+|===
+
+=== Header
+
+|===
+| name | description
+
+| `Authorization`
+| API를 사용하기 위한 인증 키
+|===
+
+=== 공통 Response Body
+
+|===
+| field | description
+
+| `code`
+| 응답 코드
+
+| `message`
+| 예외사항 내용 등 응답메세지
+
+| `data`
+| 실제 반환될 데이터
+|===
+
+[[login]]
+== Login API
+
+=== Request
+
+CURL:
+include::{snippets}/login/curl-request.adoc[]
+
+Request HTTP:
+include::{snippets}/login/http-request.adoc[]
+
+Request Fields:
+include::{snippets}/login/request-fields.adoc[]
+
+=== Response
+
+Response HTTP:
+include::{snippets}/login/http-response.adoc[]
