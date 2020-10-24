@@ -61,8 +61,7 @@ class RegisterControllerTest {
                                         "Must match the password"),
                                 getDescriptor("profileManager.chatName", "대화명",
                                         profileManagerClass),
-                                getDescriptor("profileManager.picture", "사진",
-                                        profileManagerClass).optional()
+                                getDescriptor("profileManager.picture", "사진").optional()
                         )
                 ));
     }
