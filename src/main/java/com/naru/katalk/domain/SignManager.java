@@ -58,14 +58,6 @@ public class SignManager {
         return new SignManager(signManager.email, hashPassword, signManager.confirmPassword);
     }
 
-    public static SignManager getLoginTestInstance() {
-        return SignManager
-                .builder()
-                .email(EMAIL)
-                .password(PASSWORD)
-                .build();
-    }
-
     public static SignManager getTestInstance() {
         return SignManager
                 .builder()

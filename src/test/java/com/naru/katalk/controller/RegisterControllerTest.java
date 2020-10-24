@@ -58,7 +58,7 @@ class RegisterControllerTest {
                                 getDescriptor("signManager.password", "비밀번호",
                                         signManagerClass),
                                 getDescriptor("signManager.confirmPassword", "비밀번호 확인",
-                                        signManagerClass),
+                                        "Must match the password"),
                                 getDescriptor("profileManager.chatName", "대화명",
                                         profileManagerClass),
                                 getDescriptor("profileManager.picture", "사진",

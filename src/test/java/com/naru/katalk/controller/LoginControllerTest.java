@@ -54,7 +54,9 @@ public class LoginControllerTest {
     @Test
     public void 로그인() throws Exception {
 
-        final SignManager signManager = SignManager.getLoginTestInstance();
+        final SignManager signManager = SignManager.getTestInstance();
+
+        final Class<SignManager> signManagerClass = SignManager.class;
 
         this.mockMvc
                 .perform(MockMvcPostHelper.postObject("/users/login", signManager))
@@ -62,9 +64,10 @@ public class LoginControllerTest {
                 .andDo(print())
                 .andDo(restDocumentation.document(
                         requestFields(
-                                getDescriptor("email", "이메일"),
-                                getDescriptor("password", "비밀번호"),
-                                getDescriptor("confirmPassword", "비밀번호 확인")
+                                getDescriptor("email", "이메일", signManagerClass),
+                                getDescriptor("password", "비밀번호", signManagerClass),
+                                getDescriptor("confirmPassword", "비밀번호 확인, 로그인에서는 무시되는 속성입니다")
+                                        .optional()
                         )
                 ));
     }
