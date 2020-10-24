@@ -20,7 +20,7 @@ import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.service.GuestService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
-import static com.naru.katalk.util.FieldDescriptorHelper.getStringFieldDescriptor;
+import static com.naru.katalk.util.FieldDescriptorHelper.getConstraintDescriptor;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -56,15 +56,15 @@ class RegisterControllerTest {
                 .andDo(print())
                 .andDo(restDocumentation.document(
                         requestFields(
-                                getStringFieldDescriptor("signManager.email", "이메일",
+                                getConstraintDescriptor("signManager.email", "이메일",
                                         SignManager.class),
-                                getStringFieldDescriptor("signManager.password", "비밀번호",
+                                getConstraintDescriptor("signManager.password", "비밀번호",
                                         SignManager.class),
-                                getStringFieldDescriptor("signManager.confirmPassword", "비밀번호 확인",
+                                getConstraintDescriptor("signManager.confirmPassword", "비밀번호 확인",
                                         SignManager.class),
-                                getStringFieldDescriptor("profileManager.chatName", "대화명",
+                                getConstraintDescriptor("profileManager.chatName", "대화명",
                                         ProfileManager.class),
-                                getStringFieldDescriptor("profileManager.picture", "사진",
+                                getConstraintDescriptor("profileManager.picture", "사진",
                                         ProfileManager.class)
                         )
                 ));

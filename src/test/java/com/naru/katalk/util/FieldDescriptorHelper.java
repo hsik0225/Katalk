@@ -19,8 +19,8 @@ public class FieldDescriptorHelper {
         return isOptional ? fieldDescriptor.optional() : fieldDescriptor;
     }
 
-    public static <T> FieldDescriptor getStringFieldDescriptor(String path, String description,
-                                                               Class<T> clazz) {
+    public static <T> FieldDescriptor getConstraintDescriptor(String path, String description,
+                                                              Class<T> clazz) {
         String property = path.contains("\\.") ? path.split("\\.")[1] : path;
         ConstraintDescriptions descriptions = new ConstraintDescriptions(clazz);
 
