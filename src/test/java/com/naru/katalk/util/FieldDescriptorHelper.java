@@ -10,17 +10,19 @@ import static org.springframework.util.StringUtils.collectionToDelimitedString;
 
 public class FieldDescriptorHelper {
 
-    public static FieldDescriptor getFieldDescriptor(String path, String description,
-                                                     boolean isOptional) {
-        FieldDescriptor fieldDescriptor = fieldWithPath(path).type(JsonFieldType.STRING)
-                .description(description)
-                .attributes(key("constraint").value(""));
-
-        return isOptional ? fieldDescriptor.optional() : fieldDescriptor;
+    public static FieldDescriptor getDescriptor(String path, String description) {
+        return getDescriptor(path, description, "");
     }
 
-    public static <T> FieldDescriptor getConstraintDescriptor(String path, String description,
-                                                              Class<T> clazz) {
+    private static FieldDescriptor getDescriptor(String path, String description,
+                                                 String constraint) {
+        return fieldWithPath(path).type(JsonFieldType.STRING)
+                .description(description)
+                .attributes(key("constraint").value(constraint));
+    }
+
+    public static <T> FieldDescriptor getDescriptor(String path, String description,
+                                                    Class<T> clazz) {
         String property = path.contains("\\.") ? path.split("\\.")[1] : path;
         ConstraintDescriptions descriptions = new ConstraintDescriptions(clazz);
 
@@ -28,8 +30,6 @@ public class FieldDescriptorHelper {
         String constraintMessages =
                 collectionToDelimitedString(descriptions.descriptionsForProperty(property), ".");
 
-        return fieldWithPath(path).type(JsonFieldType.STRING)
-                .description(description)
-                .attributes(key("constraint").value(constraintMessages));
+        return getDescriptor(path, description, constraintMessages);
     }
 }

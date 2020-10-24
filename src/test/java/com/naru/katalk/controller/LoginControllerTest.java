@@ -18,7 +18,7 @@ import com.naru.katalk.exception.advice.UserControllerAdvice;
 import com.naru.katalk.service.GuestService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
-import static com.naru.katalk.util.FieldDescriptorHelper.getFieldDescriptor;
+import static com.naru.katalk.util.FieldDescriptorHelper.getDescriptor;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,9 +62,9 @@ public class LoginControllerTest {
                 .andDo(print())
                 .andDo(restDocumentation.document(
                         requestFields(
-                                getFieldDescriptor("email", "이메일", false),
-                                getFieldDescriptor("password", "비밀번호", false),
-                                getFieldDescriptor("confirmPassword", "비밀번호 확인", true)
+                                getDescriptor("email", "이메일"),
+                                getDescriptor("password", "비밀번호"),
+                                getDescriptor("confirmPassword", "비밀번호 확인")
                         )
                 ));
     }
