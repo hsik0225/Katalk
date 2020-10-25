@@ -2,6 +2,8 @@ package com.naru.katalk.common;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -9,6 +11,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import lombok.Getter;
 
+@JsonPropertyOrder(value = {"statusCode", "statusText", "message", "body"})
 // 상속하여 새로운 관련 인스턴스를 생성하지 못하도록 설정
 public final class ErrorResponse extends Response {
 
@@ -27,14 +30,18 @@ public final class ErrorResponse extends Response {
         return new ErrorResponse(code);
     }
 
-    public static ErrorResponse of(final ErrorCode code, final ConstraintViolationException e) {
-        return new ErrorResponse(code, FieldError.from(e, code));
-    }
-
     public static ErrorResponse of(final MethodArgumentTypeMismatchException e) {
         final String value = e.getValue() == null ? "" : e.getValue().toString();
         FieldError error = ErrorResponse.FieldError.of(e.getName(), value, e.getErrorCode());
         return new ErrorResponse(ErrorCode.LOGIN_INPUT_INVALID, error);
+    }
+
+    public static ErrorResponse of(final ErrorCode code, final BindingResult bindingResult) {
+        return new ErrorResponse(code, FieldError.from(bindingResult));
+    }
+
+    public static ErrorResponse of(final ErrorCode code, final ConstraintViolationException e) {
+        return new ErrorResponse(code, FieldError.from(e, code));
     }
 
     @Getter
