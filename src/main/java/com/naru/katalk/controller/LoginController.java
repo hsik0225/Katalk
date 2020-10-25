@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
-import com.naru.katalk.common.Response;
 import com.naru.katalk.common.SuccessCode;
+import com.naru.katalk.common.SuccessResponse;
 import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.service.GuestService;
 
@@ -20,9 +20,9 @@ public class LoginController {
     private final GuestService guestService;
 
     @PostMapping(path = "/users/login")
-    public ResponseEntity<Response> logIn(@RequestBody final SignManager signManager) {
+    public ResponseEntity<SuccessResponse> logIn(@RequestBody final SignManager signManager) {
         guestService.login(signManager);
-        return new ResponseEntity<>(new Response(SuccessCode.LOGGED_IN), HttpStatus.OK);
+        return new ResponseEntity<>(SuccessResponse.from(SuccessCode.LOGGED_IN), HttpStatus.OK);
     }
 }
 
