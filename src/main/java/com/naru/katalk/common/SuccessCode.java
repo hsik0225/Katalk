@@ -8,15 +8,15 @@ import lombok.Getter;
 public enum SuccessCode implements ResponseStatusCode {
 
     // Member
-    LOGGED_IN("로그인 성공", HttpStatus.OK),
-    SIGNED_UP("회원가입 성공", HttpStatus.CREATED);
-
-    private final String message;
+    LOGGED_IN(HttpStatus.OK, "로그인 성공"),
+    SIGNED_UP(HttpStatus.CREATED, "회원가입 성공");
 
     private final HttpStatus httpStatus;
 
-    SuccessCode(final String message, final HttpStatus httpStatus) {
-        this.message = message;
+    private final String message;
+
+    SuccessCode(HttpStatus httpStatus, String message) {
         this.httpStatus = httpStatus;
+        this.message = message;
     }
 }
