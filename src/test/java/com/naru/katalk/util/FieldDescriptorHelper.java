@@ -24,7 +24,6 @@ public class FieldDescriptorHelper {
 
     private static final List<String> descriptions = new ArrayList<>();
 
-
     public static FieldDescriptor getDescriptor(String path, String description) {
         return getDescriptor(path, description, "");
     }
