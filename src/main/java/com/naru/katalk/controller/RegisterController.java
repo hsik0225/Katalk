@@ -13,18 +13,18 @@ import lombok.RequiredArgsConstructor;
 import com.naru.katalk.common.SuccessCode;
 import com.naru.katalk.common.SuccessResponse;
 import com.naru.katalk.domain.Member;
-import com.naru.katalk.service.GuestService;
+import com.naru.katalk.service.RegisterService;
 
 @RequiredArgsConstructor
 @RestController
 public class RegisterController {
 
-    private final GuestService guestService;
+    private final RegisterService registerService;
 
     @PostMapping(path = "/users")
     public ResponseEntity<SuccessResponse> register(
             @RequestBody @Valid final Member member) {
-        guestService.register(member);
+        registerService.register(member);
         return new ResponseEntity<>(SuccessResponse.from(SuccessCode.SIGNED_UP),
                 HttpStatus.CREATED);
     }

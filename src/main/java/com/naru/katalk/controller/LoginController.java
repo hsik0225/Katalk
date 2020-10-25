@@ -13,18 +13,18 @@ import lombok.RequiredArgsConstructor;
 import com.naru.katalk.common.SuccessCode;
 import com.naru.katalk.common.SuccessResponse;
 import com.naru.katalk.domain.SignManager;
-import com.naru.katalk.service.GuestService;
+import com.naru.katalk.service.LoginService;
 
 @RequiredArgsConstructor
 @RestController
 public class LoginController {
 
-    private final GuestService guestService;
+    private final LoginService loginService;
 
     @PostMapping(path = "/users/login")
     public ResponseEntity<SuccessResponse> logIn(
             @RequestBody @Valid final SignManager signManager) {
-        guestService.login(signManager);
+        loginService.login(signManager);
         return new ResponseEntity<>(SuccessResponse.from(SuccessCode.LOGGED_IN), HttpStatus.OK);
     }
 }

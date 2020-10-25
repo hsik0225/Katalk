@@ -16,7 +16,7 @@ import com.naru.katalk.config.ResultHandlerConfiguration;
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.ProfileManager;
 import com.naru.katalk.domain.SignManager;
-import com.naru.katalk.service.GuestService;
+import com.naru.katalk.service.RegisterService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
 import static com.naru.katalk.util.FieldDescriptorHelper.getDescriptor;
@@ -37,7 +37,7 @@ class RegisterControllerTest {
     private RestDocumentationResultHandler restDocumentation;
 
     @MockBean
-    private GuestService guestService;
+    private RegisterService registerService;
 
     private static final Class<SignManager> signManagerClass = SignManager.class;
 

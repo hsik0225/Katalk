@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.naru.katalk.config.ResultHandlerConfiguration;
 import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.exception.advice.UserControllerAdvice;
-import com.naru.katalk.service.GuestService;
+import com.naru.katalk.service.LoginService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
 import static com.naru.katalk.util.FieldDescriptorHelper.getDescriptor;
@@ -49,7 +49,7 @@ public class LoginControllerTest {
     private RestDocumentationResultHandler restDocumentation;
 
     @MockBean
-    private GuestService guestService;
+    private LoginService loginService;
 
     @Test
     public void 로그인() throws Exception {
