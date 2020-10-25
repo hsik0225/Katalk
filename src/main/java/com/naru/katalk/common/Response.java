@@ -1,5 +1,6 @@
 package com.naru.katalk.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import org.springframework.http.HttpStatus;
@@ -20,19 +21,24 @@ public abstract class Response {
         this.body = body;
     }
 
-    protected int getHttpStatusCode() {
+    public int getStatusCode() {
         return httpStatus.value();
     }
 
-    protected String getHttpStatusText() {
+    public String getStatusText() {
         return httpStatus.getReasonPhrase();
     }
 
-    protected String getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    protected Object getBody() {
+    public Object getBody() {
         return body;
+    }
+
+    @JsonIgnore
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
 }
