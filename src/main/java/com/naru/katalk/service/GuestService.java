@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.MemberManager;
 import com.naru.katalk.domain.SignManager;
-import com.naru.katalk.exception.DuplicateEmailException;
 import com.naru.katalk.exception.LoginException;
 import com.naru.katalk.repository.MemberRepository;
 
@@ -28,8 +27,6 @@ public class GuestService {
     @Transactional
     public void register(MemberManager memberManager) {
         SignManager signManager = memberManager.getSignManager();
-        checkDuplicateEmail(signManager);
-
         signManager = SignManager.hashPassword(signManager);
         memberManager = memberManager.create(signManager);
 
@@ -44,11 +41,5 @@ public class GuestService {
 
     private Member findMemberByEmail(final SignManager signManager) {
         return findOptMemberByEmail(signManager).orElseThrow(LoginException::new);
-    }
-
-    private void checkDuplicateEmail(final SignManager signManager) {
-        if (findOptMemberByEmail(signManager).isPresent()) {
-            throw new DuplicateEmailException("해당 이메일로 가입된 아이디가 존재합니다");
-        }
     }
 }
