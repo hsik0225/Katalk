@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.naru.katalk.common.ErrorCode;
 import com.naru.katalk.common.ErrorResponse;
 import com.naru.katalk.exception.LoginException;
+import com.naru.katalk.exception.RegisterException;
 
 @Slf4j
 @RestControllerAdvice
@@ -18,6 +19,12 @@ public class UserControllerAdvice {
     protected ResponseEntity<ErrorResponse> handleLoginException() {
         return handleExceptionClass(LoginException.class,
                 ErrorResponse.from(ErrorCode.LOGIN_INPUT_INVALID));
+    }
+
+    @ExceptionHandler(RegisterException.class)
+    protected ResponseEntity<ErrorResponse> handleRegisterException(RegisterException e) {
+        return handleExceptionClass(RegisterException.class,
+                ErrorResponse.from(e));
     }
 
     private static ResponseEntity<ErrorResponse> handleExceptionClass(
