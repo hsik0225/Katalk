@@ -1,7 +1,5 @@
 package com.naru.katalk.service;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,12 +30,8 @@ public class GuestService {
         memberRepository.save(newMember);
     }
 
-    private Optional<Member> findOptMemberByEmail(final SignManager signManager) {
-        return memberRepository
-                .findBySignManager_Email(signManager.getEmail());
-    }
-
     private Member findMemberByEmail(final SignManager signManager) {
-        return findOptMemberByEmail(signManager).orElseThrow(LoginException::new);
+        return memberRepository
+                .findBySignManager_Email(signManager.getEmail()).orElseThrow(LoginException::new);
     }
 }
