@@ -7,7 +7,8 @@ import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 
 import com.naru.katalk.repository.MemberRepository;
 
-public class LoginServiceTest extends MockTest {
+@ServiceTest
+public class LoginServiceTest {
 
     @Mock
     private MemberRepository memberRepository;
