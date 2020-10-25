@@ -8,18 +8,31 @@ import org.springframework.http.HttpStatus;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class Response {
 
-    protected final int statusCode;
-
-    protected final String statusText;
+    protected HttpStatus httpStatus;
 
     protected final String message;
 
     protected final Object body;
 
-    public Response(HttpStatus httpStatus, String message, Object body) {
-        this.statusCode = httpStatus.value();
-        this.statusText = httpStatus.getReasonPhrase();
-        this.message = message;
+    protected Response(final ResponseStatusCode code, Object body) {
+        this.httpStatus = code.getHttpStatus();
+        this.message = code.getMessage();
         this.body = body;
+    }
+
+    protected int getHttpStatusCode() {
+        return httpStatus.value();
+    }
+
+    protected String getHttpStatusText() {
+        return httpStatus.getReasonPhrase();
+    }
+
+    protected String getMessage() {
+        return message;
+    }
+
+    protected Object getBody() {
+        return body;
     }
 }
