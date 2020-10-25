@@ -1,5 +1,7 @@
 package com.naru.katalk.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +23,7 @@ public class RegisterController {
 
     @PostMapping(path = "/users")
     public ResponseEntity<SuccessResponse> register(
-            @RequestBody final Member member) {
+            @RequestBody @Valid final Member member) {
         guestService.register(member);
         return new ResponseEntity<>(SuccessResponse.from(SuccessCode.SIGNED_UP),
                 HttpStatus.CREATED);

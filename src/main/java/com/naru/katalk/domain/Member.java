@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,9 +27,11 @@ public class Member {
     private Long memberId;
 
     @Embedded
+    @Valid
     private SignManager signManager;
 
     @Embedded
+    @Valid
     private ProfileManager profileManager;
 
     @Builder
