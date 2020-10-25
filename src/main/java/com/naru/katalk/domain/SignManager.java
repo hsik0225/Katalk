@@ -44,10 +44,8 @@ public class SignManager {
         return this.password.equals(confirmPassword);
     }
 
-    public void checkPassword(final SignManager signManager) {
-        if (!BCrypt.checkpw(signManager.password, this.password)) {
-            throw new LoginException();
-        }
+    public boolean checkPassword(final SignManager signManager) {
+        return BCrypt.checkpw(signManager.password, this.password);
     }
 
     // 불변 객체임을 보장하기 위해 this.password = BCrypt.hashpw(this.password, BCrypt.gensalt()); 하지 않고

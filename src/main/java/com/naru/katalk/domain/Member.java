@@ -40,12 +40,8 @@ public class Member {
         this.profileManager = profileManager;
     }
 
-    public Member(SignManager signManager) {
-        this.signManager = signManager;
-    }
-
-    public void checkPassword(final SignManager signManager) {
-        this.signManager.checkPassword(signManager);
+    public boolean checkPassword(final SignManager signManager) {
+        return this.signManager.checkPassword(signManager);
     }
 
     public void changePassword() {
