@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import lombok.Getter;
+
+import com.naru.katalk.exception.RegisterException;
 
 @JsonPropertyOrder(value = {"statusCode", "statusText", "message", "body"})
 // 상속하여 새로운 관련 인스턴스를 생성하지 못하도록 설정
@@ -30,6 +30,12 @@ public final class ErrorResponse extends Response {
         return new ErrorResponse(code);
     }
 
+    public static ErrorResponse from(final RegisterException e) {
+        ErrorCode errorCode = e.getErrorCode();
+        return new ErrorResponse(errorCode,
+                FieldError.of(e.getField(), e.getValue(), errorCode.getReason()));
+    }
+
     public static ErrorResponse of(final MethodArgumentTypeMismatchException e) {
         final String value = e.getValue() == null ? "" : e.getValue().toString();
         FieldError error = ErrorResponse.FieldError.of(e.getName(), value, e.getErrorCode());
@@ -38,10 +44,6 @@ public final class ErrorResponse extends Response {
 
     public static ErrorResponse of(final ErrorCode code, final BindingResult bindingResult) {
         return new ErrorResponse(code, FieldError.from(bindingResult));
-    }
-
-    public static ErrorResponse of(final ErrorCode code, final ConstraintViolationException e) {
-        return new ErrorResponse(code, FieldError.from(e, code));
     }
 
     @Getter
@@ -77,18 +79,6 @@ public final class ErrorResponse extends Response {
                                     fieldError.getRejectedValue().toString(),
                             fieldError.getDefaultMessage()))
                     .toArray(FieldError[]::new);
-        }
-
-        public static FieldError from(final ConstraintViolationException e, final ErrorCode code) {
-            final String[] fieldAndValue = StringUtils
-                    .trimAllWhitespace(e.getSQLException().getMessage())
-                    .split("'");
-
-            final String field = fieldAndValue[3];
-            final String value = fieldAndValue[1];
-            final String reason = code.getReason();
-
-            return new FieldError(field, value, reason);
         }
     }
 }
