@@ -24,17 +24,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.requestF
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-@WebMvcTest(controllers = RegisterController.class)
-@Import({ResultHandlerConfiguration.class})
-@AutoConfigureRestDocs
-class RegisterControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private RestDocumentationResultHandler restDocumentation;
+class RegisterControllerTest extends ControllerTest {
 
     @MockBean
     private RegisterService registerService;

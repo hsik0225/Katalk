@@ -23,30 +23,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.requestF
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-
-/*
-MockMvc 를 주입받는 2가지 방법
-1. @SpringBootTest + @AutoConfigureMockMvc
-2. @WebMvcTest
- */
-@WebMvcTest(controllers = {LoginController.class, UserControllerAdvice.class})
-
-@Import(ResultHandlerConfiguration.class)
-
-// 디렉토리 경로를 인수로 받아 결과 디렉토리(outputDir)로 설정한다
-// build.gradle 의 설정을 디폴트로 갖는다
-@AutoConfigureRestDocs
-public class LoginControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    UserControllerAdvice userControllerAdvice;
-
-    @Autowired
-    private RestDocumentationResultHandler restDocumentation;
+public class LoginControllerTest extends ControllerTest {
 
     @MockBean
     private LoginService loginService;
