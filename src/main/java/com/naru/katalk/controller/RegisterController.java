@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
-import com.naru.katalk.common.Response;
 import com.naru.katalk.common.SuccessCode;
+import com.naru.katalk.common.SuccessResponse;
 import com.naru.katalk.domain.MemberManager;
 import com.naru.katalk.service.GuestService;
 
@@ -20,8 +20,10 @@ public class RegisterController {
     private final GuestService guestService;
 
     @PostMapping(path = "/users")
-    public ResponseEntity<Response> register(@RequestBody final MemberManager memberManager) {
+    public ResponseEntity<SuccessResponse> register(
+            @RequestBody final MemberManager memberManager) {
         guestService.register(memberManager);
-        return new ResponseEntity<>(new Response(SuccessCode.SIGNED_UP), HttpStatus.CREATED);
+        return new ResponseEntity<>(SuccessResponse.from(SuccessCode.SIGNED_UP),
+                HttpStatus.CREATED);
     }
 }
