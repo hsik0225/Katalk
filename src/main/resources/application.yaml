@@ -12,8 +12,4 @@ spring:
 spring:
   profiles: local
 
-logging:
-  level:
-    com:
-      naru:
-        katalk: info
+debug: true
