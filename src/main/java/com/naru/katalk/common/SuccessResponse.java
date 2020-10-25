@@ -2,19 +2,19 @@ package com.naru.katalk.common;
 
 public final class SuccessResponse extends Response {
 
-    private SuccessResponse(final ResponseStatusCode code) {
+    private SuccessResponse(final SuccessCode code) {
         super(code, null);
     }
 
-    private SuccessResponse(final ResponseStatusCode code, Object body) {
+    private SuccessResponse(final SuccessCode code, Object body) {
         super(code, body);
     }
 
-    public static SuccessResponse from(final ResponseStatusCode code) {
+    public static SuccessResponse from(final SuccessCode code) {
         return new SuccessResponse(code);
     }
 
-    public static SuccessResponse of(final ResponseStatusCode code, Object body) {
+    public static SuccessResponse of(final SuccessCode code, Object body) {
         return new SuccessResponse(code, body);
     }
 }
