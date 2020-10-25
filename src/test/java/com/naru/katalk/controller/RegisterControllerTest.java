@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.naru.katalk.config.ResultHandlerConfiguration;
-import com.naru.katalk.domain.MemberManager;
+import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.ProfileManager;
 import com.naru.katalk.domain.SignManager;
 import com.naru.katalk.service.GuestService;
@@ -39,16 +39,15 @@ class RegisterControllerTest {
     @MockBean
     private GuestService guestService;
 
+    private static final Class<SignManager> signManagerClass = SignManager.class;
+
+    private static final Class<ProfileManager> profileManagerClass = ProfileManager.class;
+
     @Test
     public void 회원가입() throws Exception {
 
-        final Class<SignManager> signManagerClass = SignManager.class;
-        final Class<ProfileManager> profileManagerClass = ProfileManager.class;
-
-        MemberManager memberManager = MemberManager.getTestInstance();
-
         this.mockMvc
-                .perform(MockMvcPostHelper.postObject("/users", memberManager))
+                .perform(MockMvcPostHelper.postObject("/users", Member.getTestInstance()))
                 .andExpect(status().isCreated())
                 .andDo(print())
                 .andDo(restDocumentation.document(

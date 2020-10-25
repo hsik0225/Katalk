@@ -8,5 +8,5 @@ import com.naru.katalk.domain.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Optional<Member> findMemberByMemberManager_SignManager_Email(final String email);
+    Optional<Member> findBySignManager_Email(final String email);
 }

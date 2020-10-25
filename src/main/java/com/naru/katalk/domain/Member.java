@@ -16,7 +16,6 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,14 +26,23 @@ public class Member {
     private Long memberId;
 
     @Embedded
-    private MemberManager memberManager;
+    private SignManager signManager;
 
-    public Member(final MemberManager memberManager) {
-        this.memberManager = memberManager;
+    @Embedded
+    private ProfileManager profileManager;
+
+    @Builder
+    public Member(final SignManager signManager, final ProfileManager profileManager) {
+        this.signManager = signManager;
+        this.profileManager = profileManager;
+    }
+
+    public Member(SignManager signManager) {
+        this.signManager = signManager;
     }
 
     public void checkPassword(final SignManager signManager) {
-        this.memberManager.getSignManager().checkPassword(signManager);
+        this.signManager.checkPassword(signManager);
     }
 
     public void changePassword() {
@@ -63,5 +71,11 @@ public class Member {
 
     public void exitRoom() {
 
+    }
+
+    public static Member getTestInstance() {
+        SignManager signManager = SignManager.getTestInstance();
+        ProfileManager profileManager = ProfileManager.getTestInstance();
+        return new Member(signManager, profileManager);
     }
 }
