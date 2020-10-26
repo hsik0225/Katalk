@@ -20,9 +20,8 @@ public class RegisterService {
     public static final String EMAIL = "email";
 
     @Transactional
-    public void register(Member member) {
+    public Member register(Member member) {
         SignManager signManager = member.getSignManager();
-
         String email = signManager.getEmail();
         if (isEmailExist(email)) {
             throw new RegisterException(EMAIL, email, ErrorCode.EMAIL_DUPLICATION);
@@ -31,7 +30,7 @@ public class RegisterService {
         signManager = SignManager.hashPassword(signManager);
 
         Member newMember = new Member(signManager, member.getProfileManager());
-        memberRepository.save(newMember);
+        return memberRepository.save(newMember);
     }
 
     private boolean isEmailExist(String email) {
