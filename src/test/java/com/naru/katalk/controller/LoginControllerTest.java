@@ -1,20 +1,10 @@
 package com.naru.katalk.controller;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
-import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 
-import com.naru.katalk.config.ResultHandlerConfiguration;
 import com.naru.katalk.domain.SignManager;
-import com.naru.katalk.exception.advice.UserControllerAdvice;
 import com.naru.katalk.service.LoginService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
@@ -23,6 +13,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.requestF
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WebMvcTest(LoginController.class)
 public class LoginControllerTest extends ControllerTest {
 
     @MockBean
