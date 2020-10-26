@@ -13,8 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import com.naru.katalk.exception.LoginException;
-
 @Embeddable
 @Getter
 @Builder
