@@ -24,6 +24,10 @@ public class FieldDescriptorHelper {
 
     private static final List<String> descriptions = new ArrayList<>();
 
+    public static final String MESSAGE_REG = "^.*[가-힣]+.*$";
+
+    public static final String DELIMETER = ". ";
+
     public static FieldDescriptor getDescriptor(String path, String description) {
         return getDescriptor(path, description, "");
     }
@@ -49,23 +53,26 @@ public class FieldDescriptorHelper {
         if (!constraints.isEmpty()) {
 
             for (Constraint constraint : constraints) {
-                String message = constraint.getConfiguration().get("message") + " ";
+                String message = getConstraintMessage(constraint);
 
-                // 한글이 한 글자도 포함되어 있지 않으면 기본 메세지로 간주하고 추가하지 않습니다
-                if (!message.matches("^.*[가-힣]+.*$")) {
-                    message = "";
-                }
-
+                // 제약 조건에서 제약 조건 메세지를 가져온다
                 descriptions.add(message + descriptionResolver.resolveDescription(constraint));
             }
 
             // collectionToDelimitedString : 컬렉션을 delimiter 로 연결합니다
-            constraintMessages = collectionToDelimitedString(descriptions, ". ");
+            constraintMessages = collectionToDelimitedString(descriptions, DELIMETER);
 
             // 저장한 값 삭제
             descriptions.clear();
         }
 
         return getDescriptor(path, description, constraintMessages);
+    }
+
+    private static String getConstraintMessage(Constraint constraint) {
+        String message = constraint.getConfiguration().get("message") + " ";
+
+        // 한글이 한 글자도 포함되어 있으면 메세지를 추가, 아니라면 빈 문자열을 반환
+        return message.matches(MESSAGE_REG) ? message : "";
     }
 }
