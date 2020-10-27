@@ -39,7 +39,7 @@ public class LoginControllerTest extends ControllerTest {
                         requestFields(
                                 getDescriptor("email", "이메일", signManagerClass),
                                 getDescriptor("password", "비밀번호", signManagerClass),
-                                getDescriptor("confirmPassword", "비밀번호 확인. 로그인에서는 무시되는 속성입니다")
+                                getDescriptor("confirmPassword", "로그인 요청에서 무시되는 속성입니다")
                                         .optional()
                         )
                 ));

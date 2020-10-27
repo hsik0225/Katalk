@@ -15,7 +15,6 @@ import com.naru.katalk.util.MockMvcPostHelper;
 import static com.naru.katalk.util.FieldDescriptorHelper.getDescriptor;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,7 +40,7 @@ class RegisterControllerTest extends ControllerTest {
                 .andDo(print())
                 .andDo(restDocumentation.document(
                         requestFields(
-                                fieldWithPath("memberId").ignored(),
+                                getDescriptor("memberId", "회원가입 요청에서 무시되는 속성입니다").optional(),
                                 getDescriptor("signManager.email", "이메일",
                                         signManagerClass),
                                 getDescriptor("signManager.password", "비밀번호",
@@ -66,6 +65,29 @@ class RegisterControllerTest extends ControllerTest {
         this.mockMvc
                 .perform(MockMvcPostHelper.postObject("/users", member))
                 .andExpect(status().isConflict())
+                .andDo(print())
+                .andDo(restDocumentation.document());
+
+    }
+
+    @Test
+    public void 회원가입_실패_잘못된_형식() throws Exception {
+
+        SignManager signManager = SignManager.builder()
+                .email("notemailform.com")
+                .password("hasNoNumber")
+                .build();
+
+        ProfileManager profileManager = ProfileManager.builder()
+                .chatName("chat name's size must be between 6 and 16. this is too long")
+                .picture("사진은 아무런 제약이 없습니다")
+                .build();
+
+        Member member = new Member(signManager, profileManager);
+
+        this.mockMvc
+                .perform(MockMvcPostHelper.postObject("/users", member))
+                .andExpect(status().isBadRequest())
                 .andDo(print())
                 .andDo(restDocumentation.document());
 
