@@ -9,16 +9,16 @@ hsik0225.github.io
 :site-url: /build/asciidoc/html5
 
 == Overview
-include::overview.adoc[]
+include::{docs}/overview.adoc[]
 
 [#login]
 == Login
-include::login.adoc[]
+include::{docs}/login.adoc[]
 
 [#oauth]
 == OAuth Login
-include::oauth.adoc[]
+include::{docs}/oauth.adoc[]
 
 [#register]
 == Register
-include::register.adoc[]
+include::{docs}/register.adoc[]
