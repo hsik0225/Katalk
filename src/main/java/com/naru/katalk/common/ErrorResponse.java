@@ -2,8 +2,6 @@ package com.naru.katalk.common;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
@@ -11,7 +9,6 @@ import lombok.Getter;
 
 import com.naru.katalk.exception.RegisterException;
 
-@JsonPropertyOrder(value = {"statusCode", "statusText", "message", "body"})
 // 상속하여 새로운 관련 인스턴스를 생성하지 못하도록 설정
 public final class ErrorResponse extends Response {
 

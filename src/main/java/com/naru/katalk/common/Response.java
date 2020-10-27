@@ -2,10 +2,12 @@ package com.naru.katalk.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import org.springframework.http.HttpStatus;
 
 // NULL 값은 데이터 바인딩하지 않는다
+@JsonPropertyOrder(value = {"statusCode", "statusText", "message", "body"})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class Response {
 
