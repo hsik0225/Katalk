@@ -1,0 +1,53 @@
+=== Service Endpoint
+Service Endpoint는 API 서비스의 네트워크를 식별하는 Base URL입니다.
+이 프로젝트는 다음의 Service Endpoint를 가지며, 모든 URL은 Service Endpoint와 연결됩니다.
+
+[source,http,options="nowrap"]
+----
+http://localhost:8080
+----
+
+=== Response
+
+모든 응답은 아래의 필드를 가진 JSON 객체로 반환됩니다
+
+[%autowidth]
+|===
+| field | description
+
+| `statusCode`
+| 응답 코드
+
+| `statusText`
+| 응답 코드 내용
+
+| `message`
+| 응답에 대한 간단한 메세지
+
+| `data`
+| 실제 반환될 데이터. 반환될 값이 없을 경우 나타나지 않습니다
+|===
+
+=== REST Resource
+
+==== REST Resource: <<login>>
+
+[cols="1,2"]
+|===
+2+| Method
+
+| login
+| POST /users/login +
+어플리케이션에 로그인합니다.
+|===
+
+==== REST Resource: <<Register>>
+
+[cols="1,2"]
+|===
+2+| Method
+
+| register
+| POST /users +
+신규 유저를 등록합니다.
+|===
