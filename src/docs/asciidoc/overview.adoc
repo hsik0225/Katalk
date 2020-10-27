@@ -1,4 +1,5 @@
 === Service Endpoint
+
 Service Endpoint는 API 서비스의 네트워크를 식별하는 Base URL입니다.
 이 프로젝트는 다음의 Service Endpoint를 가지며, 모든 URL은 Service Endpoint와 연결됩니다.
 
@@ -41,7 +42,7 @@ http://localhost:8080
 어플리케이션에 로그인합니다.
 |===
 
-==== REST Resource: <<Register>>
+==== REST Resource: <<register>>
 
 [cols="1,2"]
 |===
