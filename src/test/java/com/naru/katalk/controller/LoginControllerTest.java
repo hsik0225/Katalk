@@ -48,6 +48,14 @@ public class LoginControllerTest extends ControllerTest {
     @Test
     public void 로그인_실패() throws Exception {
 
+        /*
+        login(any()); 가 아닌 login(SIGN_MANAGER);를 하면 LoginException을 던지지 않는다.
+        postObject로 SIGN_MANAGER를 직렬화하고 데이터를 담아 요청을 보내 컨트롤러가 받아 데이터를 역직렬화했을 때,
+
+        보낼 떄의 객체 SIGN_MANAGER != 컨트롤러에서 역직렬화 했을 때의 SIGN_MANAGER
+
+        인 것으로 추정된다
+         */
         doThrow(LoginException.class).when(loginService).login(any());
 
         this.mockMvc
