@@ -1,0 +1,47 @@
+어플리케이션에 로그인합니다.
+만약 존재하지 않는 아이디(이메일)이거나, 비밀번호가 틀릴 경우 실패합니다.
+OAuth Login 과는 다릅니다.
+OAuth Login API에 대해서 알고 싶다면 <<OAuth Login>> 를 참고해주시기 바랍니다
+
+=== Request
+
+==== Request URL
+
+[source,http,options="nowrap"]
+----
+POST /users/login
+----
+
+==== Request Headers
+
+[source,http,options="nowrap"]
+----
+Content-Type: application/json;charset=UTF-8
+----
+
+==== Request Body
+
+[source,http,options="nowrap"]
+----
+{
+    "email" : string,
+    "password" : string,
+    "confirmPassword" : string
+}
+----
+
+include::{snippets}/LoginControllerTest/로그인_성공/request-fields.adoc[]
+
+==== Request HTTP Example
+
+include::{snippets}/LoginControllerTest/로그인_성공/http-request.adoc[]
+
+=== Response
+
+==== Success Response
+
+include::{snippets}/LoginControllerTest/로그인_성공/http-response.adoc[]
+
+==== Fail Response
+
+include::{snippets}/LoginControllerTest/로그인_실패/http-response.adoc[]
