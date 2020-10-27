@@ -14,7 +14,7 @@ public abstract class FieldException extends RuntimeException {
 
     private final ErrorCode errorCode;
 
-    protected FieldException(String field, String value, ErrorCode errorCode) {
+    protected FieldException(final String field, final String value, final ErrorCode errorCode) {
         this.field = field;
         this.value = value;
         this.errorCode = errorCode;

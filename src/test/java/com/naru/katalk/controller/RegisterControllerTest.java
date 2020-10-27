@@ -4,13 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.naru.katalk.common.ErrorCode;
 import com.naru.katalk.domain.Member;
 import com.naru.katalk.domain.ProfileManager;
 import com.naru.katalk.domain.SignManager;
+import com.naru.katalk.exception.RegisterException;
 import com.naru.katalk.service.RegisterService;
 import com.naru.katalk.util.MockMvcPostHelper;
 
 import static com.naru.katalk.util.FieldDescriptorHelper.getDescriptor;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -26,11 +30,13 @@ class RegisterControllerTest extends ControllerTest {
 
     private static final Class<ProfileManager> profileManagerClass = ProfileManager.class;
 
+    private static final Member member = Member.getTestInstance();
+
     @Test
-    public void 회원가입() throws Exception {
+    public void 회원가입_성공() throws Exception {
 
         this.mockMvc
-                .perform(MockMvcPostHelper.postObject("/users", Member.getTestInstance()))
+                .perform(MockMvcPostHelper.postObject("/users", member))
                 .andExpect(status().isCreated())
                 .andDo(print())
                 .andDo(restDocumentation.document(
@@ -49,5 +55,19 @@ class RegisterControllerTest extends ControllerTest {
                 ));
     }
 
+    @Test
+    public void 회원가입_실패_중복된_이메일() throws Exception {
 
+        String email = member.getSignManager().getEmail();
+        RegisterException registerException =
+                new RegisterException("email", email, ErrorCode.EMAIL_DUPLICATION);
+        doThrow(registerException).when(registerService).register(any());
+
+        this.mockMvc
+                .perform(MockMvcPostHelper.postObject("/users", member))
+                .andExpect(status().isConflict())
+                .andDo(print())
+                .andDo(restDocumentation.document());
+
+    }
 }
