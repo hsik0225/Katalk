@@ -9,107 +9,10 @@ hsik0225.github.io
 :site-url: /build/asciidoc/html5
 
 == Overview
+include::overview.adoc[]
 
-=== Service Endpoint
-
-Service Endpoint는 API 서비스의 네트워크를 식별하는 Base URL입니다.
-이 프로젝트는 다음의 Service Endpoint를 가지며, 모든 URL은 Service Endpoint와 연결됩니다.
-
-=== Response
-
-모든 응답은 아래의 필드를 가진 JSON 객체로 반환됩니다
-
-[%autowidth]
-|===
-| field | description
-
-| `statusCode`
-| 응답 코드
-
-| `statusText`
-| 응답 코드 내용
-
-| `message`
-| 응답에 대한 간단한 메세지
-
-| `data`
-| 실제 반환될 데이터. 반환될 값이 없을 경우 나타나지 않습니다
-|===
-
-=== REST Resource
-
-==== REST Resource: <<Login>>
-
-[cols="1,2"]
-|===
-2+| Method
-
-| login
-| POST /users/login +
-어플리케이션에 로그인합니다.
-|===
-
-==== REST Resource: <<Register>>
-
-[cols="1,2"]
-|===
-2+| Method
-
-| register
-| POST /users +
-신규 유저를 등록합니다.
-|===
-
-[#Login]
 == Login
-
-어플리케이션에 로그인합니다.
-만약 존재하지 않는 아이디(이메일)이거나, 비밀번호가 틀릴 경우 실패합니다.
-OAuth Login 과는 다릅니다.
-OAuth Login API에 대해서 알고 싶다면 <<OAuth Login>> 를 참고해주시기 바랍니다
-
-=== Request
-
-==== Request URL
-
-[source,http,options="nowrap"]
-----
-POST /users/login
-----
-
-==== Request Headers
-
-[source,http,options="nowrap"]
-----
-Content-Type: application/json;charset=UTF-8
-----
-
-=== Request Body
-
-[source,http,options="nowrap"]
-----
-{
-    "email" : string,
-    "password" : string,
-    "confirmPassword" : string
-}
-----
-
-include::{snippets}/LoginControllerTest/로그인_성공/request-fields.adoc[]
-
-==== Request HTTP Example
-
-include::{snippets}/LoginControllerTest/로그인_성공/http-request.adoc[]
-
-=== Response
-
-==== Success Response
-
-include::{snippets}/LoginControllerTest/로그인_성공/http-response.adoc[]
-
-==== Fail Response
-
-include::{snippets}/LoginControllerTest/로그인_실패/http-response.adoc[]
+include::login.adoc[]
 
 == OAuth Login
 
