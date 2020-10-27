@@ -44,6 +44,12 @@ asciidoctor {
     // 입력 값으로 snippets 디렉토리 설정하기
     inputs.dir snippetsDir
 
+    /*
+    빌드할 때 include:: 는 기본 클래스 패스로 설정되어 있다.
+    그래서 예를 들어 include::login.adoc[] 과 같이하면 $CLASS_PATH/login.adoc 으로 인식된다
+    또, {{docdir}} 와 같은 asciidoctor 의 기본 attribute 도 인식하지 못한다.
+    그러므로 build.gradle 설정에서 asciidoc 파일의 경로를 값으로 넘겨주어야 한다
+     */
     attributes 'docs': file('src/docs/asciidoc')
 
     // task를 test task에 의존하게 만들어 문서가 생성되기 전에 테스트가 실행된다
@@ -63,7 +69,10 @@ asciidoctor.doLast {
 
 task copyDocument(type: Copy) {
     dependsOn asciidoctor
+
+    // asciidoctor 의 기본 inputDir은 build/docs/asciidoc 이다
     from file("build/docs/asciidoc")
+
     into file("src/main/resources/static/docs")
 }
 
