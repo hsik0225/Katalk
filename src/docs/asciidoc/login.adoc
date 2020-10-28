@@ -4,13 +4,16 @@ OAuth Login 과는 다릅니다.
 OAuth Login API에 대해서 알고 싶다면 <<oauth>> 를 참고해주시기 바랍니다
 
 === Request
+
 Request URL::
+
 [source,http,options="nowrap"]
 ----
 POST /users/login
 ----
 
 Request Headers::
+
 [source,http,options="nowrap"]
 ----
 Content-Type: application/json;charset=UTF-8
@@ -40,5 +43,6 @@ include::{snippets}/LoginControllerTest/로그인_성공/http-request.adoc[]
 include::{snippets}/LoginControllerTest/로그인_성공/http-response.adoc[]
 
 ==== Fail Response
+
 존재하지 않는 이메일 혹은 틀린 비밀번호::
 include::{snippets}/LoginControllerTest/로그인_실패/http-response.adoc[]
