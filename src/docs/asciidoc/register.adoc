@@ -5,21 +5,21 @@ IMPORTANT: 이미 가입된 ID(Email)로 회원가입을 진행하실 경우 회
 
 === Request
 
-==== Request URL
+Request URL::
 
 [source,http,options="nowrap"]
 ----
 POST /users
 ----
 
-==== Request Headers
+Request Headers::
 
 [source,http,options="nowrap"]
 ----
 Content-Type: application/json;charset=UTF-8
 ----
 
-==== Request Body
+Request Body::
 
 [source,http,options="nowrap"]
 ----
@@ -38,7 +38,7 @@ Content-Type: application/json;charset=UTF-8
 
 include::{snippets}/RegisterControllerTest/회원가입_성공/request-fields.adoc[]
 
-==== Request HTTP Example
+Request HTTP Example::
 
 include::{snippets}/RegisterControllerTest/회원가입_성공/http-request.adoc[]
 
@@ -50,9 +50,9 @@ include::{snippets}/RegisterControllerTest/회원가입_성공/http-response.ado
 
 ==== Fail Response
 
-===== 이미 가입된 이메일
+이미 가입된 이메일::
 
 include::{snippets}/RegisterControllerTest/회원가입_실패_중복된_이메일/http-response.adoc[]
 
-===== 잘못된 형식의 요청
+잘못된 형식의 요청::
 include::{snippets}/RegisterControllerTest/회원가입_실패_잘못된_형식/http-response.adoc[]

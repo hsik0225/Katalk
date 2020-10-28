@@ -462,22 +462,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#login">Login</a>
 <ul class="sectlevel2">
-<li><a href="#_request">Request</a>
-<ul class="sectlevel3">
-<li><a href="#_request_url">Request URL</a></li>
-<li><a href="#_request_headers">Request Headers</a></li>
-<li><a href="#_request_body">Request Body</a></li>
-<li><a href="#_request_http_example">Request HTTP Example</a></li>
-</ul>
-</li>
+<li><a href="#_request">Request</a></li>
 <li><a href="#_response_2">Response</a>
 <ul class="sectlevel3">
 <li><a href="#_success_response">Success Response</a></li>
-<li><a href="#_fail_response">Fail Response</a>
-<ul class="sectlevel4">
-<li><a href="#_존재하지_않는_이메일_혹은_틀린_비밀번호">존재하지 않는 이메일 혹은 틀린 비밀번호</a></li>
-</ul>
-</li>
+<li><a href="#_fail_response">Fail Response</a></li>
 </ul>
 </li>
 </ul>
@@ -485,23 +474,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#oauth">OAuth Login</a></li>
 <li><a href="#register">Register</a>
 <ul class="sectlevel2">
-<li><a href="#_request_2">Request</a>
-<ul class="sectlevel3">
-<li><a href="#_request_url_2">Request URL</a></li>
-<li><a href="#_request_headers_2">Request Headers</a></li>
-<li><a href="#_request_body_2">Request Body</a></li>
-<li><a href="#_request_http_example_2">Request HTTP Example</a></li>
-</ul>
-</li>
+<li><a href="#_request_2">Request</a></li>
 <li><a href="#_response_3">Response</a>
 <ul class="sectlevel3">
 <li><a href="#_success_response_2">Success Response</a></li>
-<li><a href="#_fail_response_2">Fail Response</a>
-<ul class="sectlevel4">
-<li><a href="#_이미_가입된_이메일">이미 가입된 이메일</a></li>
-<li><a href="#_잘못된_형식의_요청">잘못된 형식의 요청</a></li>
-</ul>
-</li>
+<li><a href="#_fail_response_2">Fail Response</a></li>
 </ul>
 </li>
 </ul>
@@ -619,24 +596,31 @@ OAuth Login API에 대해서 알고 싶다면 <a href="#oauth">OAuth Login</a> �
 </div>
 <div class="sect2">
 <h3 id="_request"><a class="link" href="#_request">Request</a></h3>
-<div class="sect3">
-<h4 id="_request_url"><a class="link" href="#_request_url">Request URL</a></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request URL</dt>
+</dl>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /users/login</code></pre>
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request Headers</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_request_headers"><a class="link" href="#_request_headers">Request Headers</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">Content-Type: application/json;charset=UTF-8</code></pre>
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request Body</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_request_body"><a class="link" href="#_request_body">Request Body</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">{
@@ -687,9 +671,11 @@ OAuth Login API에 대해서 알고 싶다면 <a href="#oauth">OAuth Login</a> �
 </tr>
 </tbody>
 </table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request HTTP Example</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_request_http_example"><a class="link" href="#_request_http_example">Request HTTP Example</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /users/login HTTP/1.1
@@ -700,7 +686,6 @@ Content-Type: application/json;charset=UTF-8
   "password" : "test1234",
   "confirmPassword" : "test1234"
 }</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -723,8 +708,11 @@ Content-Type: application/json;charset=UTF-8
 </div>
 <div class="sect3">
 <h4 id="_fail_response"><a class="link" href="#_fail_response">Fail Response</a></h4>
-<div class="sect4">
-<h5 id="_존재하지_않는_이메일_혹은_틀린_비밀번호"><a class="link" href="#_존재하지_않는_이메일_혹은_틀린_비밀번호">존재하지 않는 이메일 혹은 틀린 비밀번호</a></h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">존재하지 않는 이메일 혹은 틀린 비밀번호</dt>
+</dl>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 401 Unauthorized
@@ -735,7 +723,6 @@ Content-Type: application/json;charset=UTF-8
   "statusText" : "Unauthorized",
   "message" : "존재하지 않는 이메일이거나 비밀번호가 일치하지 않습니다"
 }</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -771,24 +758,31 @@ Content-Type: application/json;charset=UTF-8
 </div>
 <div class="sect2">
 <h3 id="_request_2"><a class="link" href="#_request_2">Request</a></h3>
-<div class="sect3">
-<h4 id="_request_url_2"><a class="link" href="#_request_url_2">Request URL</a></h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request URL</dt>
+</dl>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /users</code></pre>
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request Headers</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_request_headers_2"><a class="link" href="#_request_headers_2">Request Headers</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">Content-Type: application/json;charset=UTF-8</code></pre>
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request Body</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_request_body_2"><a class="link" href="#_request_body_2">Request Body</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">{
@@ -866,9 +860,11 @@ Content-Type: application/json;charset=UTF-8
 </tr>
 </tbody>
 </table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Request HTTP Example</dt>
+</dl>
 </div>
-<div class="sect3">
-<h4 id="_request_http_example_2"><a class="link" href="#_request_http_example_2">Request HTTP Example</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /users HTTP/1.1
@@ -886,7 +882,6 @@ Content-Type: application/json;charset=UTF-8
     "picture" : "s3.com"
   }
 }</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -909,8 +904,11 @@ Content-Type: application/json;charset=UTF-8
 </div>
 <div class="sect3">
 <h4 id="_fail_response_2"><a class="link" href="#_fail_response_2">Fail Response</a></h4>
-<div class="sect4">
-<h5 id="_이미_가입된_이메일"><a class="link" href="#_이미_가입된_이메일">이미 가입된 이메일</a></h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">이미 가입된 이메일</dt>
+</dl>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 409 Conflict
@@ -928,9 +926,11 @@ Content-Type: application/json;charset=UTF-8
 }</code></pre>
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">잘못된 형식의 요청</dt>
+</dl>
 </div>
-<div class="sect4">
-<h5 id="_잘못된_형식의_요청"><a class="link" href="#_잘못된_형식의_요청">잘못된 형식의 요청</a></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 400 Bad Request
@@ -941,20 +941,19 @@ Content-Type: application/json;charset=UTF-8
   "statusText" : "Bad Request",
   "message" : "Invalid Input Value",
   "body" : [ {
-    "field" : "signManager.email",
-    "value" : "notemailform.com",
-    "reason" : "must be a well-formed email address"
+    "field" : "signManager.password",
+    "value" : "hasNoNumber",
+    "reason" : "소문자 영어, 숫자가 1번씩 포함되어야 하며 비밀번호는 대/소문자, 숫자만이 가능합니다."
   }, {
     "field" : "profileManager.chatName",
     "value" : "chat name's size must be between 6 and 16. this is too long",
     "reason" : "size must be between 1 and 16"
   }, {
-    "field" : "signManager.password",
-    "value" : "hasNoNumber",
-    "reason" : "소문자 영어, 숫자가 1번씩 포함되어야 하며 비밀번호는 대/소문자, 숫자만이 가능합니다."
+    "field" : "signManager.email",
+    "value" : "notemailform.com",
+    "reason" : "must be a well-formed email address"
   } ]
 }</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -965,7 +964,7 @@ Content-Type: application/json;charset=UTF-8
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2020-10-28 02:58:24 +0900
+Last updated 2020-10-28 16:50:34 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
