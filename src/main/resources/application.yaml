@@ -1,3 +1,5 @@
+debug: true
+
 spring:
   profiles:
     active: local
@@ -11,8 +13,6 @@ spring:
     url: ENC(5ztirr1z9ySsifA27076fd3AqYnGQzs4YptRKJYKmSY6JZ9RXFr4xX8lYjCdElP9LCxUi4Bz6zigTB9JIZ1XTfO4w5RBgFI/310i0gcwy2csx6mmZh6Vwx9T0P7AGw7m07C8/FahF6ijA+6zDEQ5jA==)
     username: ENC(C/v+MxWkykIVlo4VoxdaeIutJnv6bI9sWjd9I8bdWR2jtWddqWbc1dDQecntYAEW)
     password: ENC(Rrum2OUG0ImkBXCH+3BxKUqjc3KErfGq8P5HtTZKBPFi60OiB4g1xL3xALL5Cb1g)
-
-debug: true
 ---
 spring:
   profiles: product
