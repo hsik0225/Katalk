@@ -1,15 +1,25 @@
 spring:
   profiles:
     active: local
-
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    initialization-mode: never
-    url: jdbc:mysql://localhost:3306/ever?serverTimezone=UTC&characterEncoding=UTF-8
-    username: ever
-    password: asdqwe1!
 ---
 spring:
   profiles: local
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: never
+    url: ENC(5ztirr1z9ySsifA27076fd3AqYnGQzs4YptRKJYKmSY6JZ9RXFr4xX8lYjCdElP9LCxUi4Bz6zigTB9JIZ1XTfO4w5RBgFI/310i0gcwy2csx6mmZh6Vwx9T0P7AGw7m07C8/FahF6ijA+6zDEQ5jA==)
+    username: ENC(C/v+MxWkykIVlo4VoxdaeIutJnv6bI9sWjd9I8bdWR2jtWddqWbc1dDQecntYAEW)
+    password: ENC(Rrum2OUG0ImkBXCH+3BxKUqjc3KErfGq8P5HtTZKBPFi60OiB4g1xL3xALL5Cb1g)
+
 debug: true
+---
+spring:
+  profiles: product
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: never
+    url: ENC(F1YbenGrYJbM623Yg4Cak041/awNbGS+7HeHwO+C7MQ5r2IcY8UFxNJF7zKvygxV/38TxrNvSH4qiw8x9I67Y+I2w5RaXoXyS8Fx/X5nfSbBzkeQcKDD2Gn3faj2idAF9PBolP71PI1WmoTIPxekCQ==)
+    username: ENC(C/v+MxWkykIVlo4VoxdaeIutJnv6bI9sWjd9I8bdWR2jtWddqWbc1dDQecntYAEW)
+    password: ENC(a1pWfUNwWp+sOhJGT3W8HO4+fK2bv/y6hFpyKQGe/ZWhb3L9M5o/IfZkWkuOm6nn)
