@@ -80,6 +80,10 @@ build {
     dependsOn copyDocument
 }
 
+bootJar {
+    dependsOn copyDocument
+}
+
 dependencies {
 
     // asciidoctor 설정에 spring-restdocs-asciidoctor 의존성을 추가한다.
