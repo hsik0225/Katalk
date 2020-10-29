@@ -30,6 +30,6 @@ public class JasyptTest {
 
         System.out.println("encryptedMessage = " + encryptedMessage);
 
-        assertThat(decryptedMessage).isEqualTo("decryptedMessage");
+        assertThat(decryptedMessage).isEqualTo("test");
     }
 }
