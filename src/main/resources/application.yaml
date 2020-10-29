@@ -23,6 +23,6 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: never
-    url: ENC(F1YbenGrYJbM623Yg4Cak041/awNbGS+7HeHwO+C7MQ5r2IcY8UFxNJF7zKvygxV/38TxrNvSH4qiw8x9I67Y+I2w5RaXoXyS8Fx/X5nfSbBzkeQcKDD2Gn3faj2idAF9PBolP71PI1WmoTIPxekCQ==)
-    username: ENC(C/v+MxWkykIVlo4VoxdaeIutJnv6bI9sWjd9I8bdWR2jtWddqWbc1dDQecntYAEW)
-    password: ENC(a1pWfUNwWp+sOhJGT3W8HO4+fK2bv/y6hFpyKQGe/ZWhb3L9M5o/IfZkWkuOm6nn)
+    url: ENC(L7/xh3T2aYNL6Yee92ZTI9Pbj/OEsQs3VzP73CpnUlLPUvVovTXZ9JAr3LalwTvM0qg0aPYYdkeT/+LVlKc1uYy9FdJzzL2vPGEtZxlsBbN83YSQ806dCpzxFy0g1tyGMR56wKU71pgzx2y8Mai1V/dTx6IHdUXPJEr8RguqU+E=)
+    username: ENC(2jGWruPjt0fCKiwuJ4BwChkoBJDezzO7pJZ5fDYRLY3uD4oX5Rdeqf9hjBA9qD6e)
+    password: ENC(UGJJv87CQdNE6roamjQaU+s9HvDwI6N/A/YHFzF0cZTjA1wHY5/IsMoWoQLhVgmr)
