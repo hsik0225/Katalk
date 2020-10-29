@@ -25,9 +25,11 @@ public class JasyptTest {
 
     @Test
     public void jasyptTest() {
-        String encryptedEver = stringEncryptor.encrypt("test");
-        String decryptedEver = stringEncryptor.decrypt(encryptedEver);
+        String encryptedMessage = stringEncryptor.encrypt("test");
+        String decryptedMessage = stringEncryptor.decrypt(encryptedMessage);
 
-        assertThat(decryptedEver).isEqualTo("test");
+        System.out.println("encryptedMessage = " + encryptedMessage);
+
+        assertThat(decryptedMessage).isEqualTo("decryptedMessage");
     }
 }
