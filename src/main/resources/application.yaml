@@ -3,6 +3,9 @@ debug: true
 spring:
   profiles:
     active: local
+
+github:
+  client-secret: ENC(IAU4rBl5whtgBDbDikyfHHQIzQPMOU5CZsFtH3NdnZ4jtHC8SEd5gBMsRh+65tqPgI18jpcEbaXlEbGk6MNSXm726SNfGdu2wVCcyW8Pu4o=)
 ---
 spring:
   profiles: local
