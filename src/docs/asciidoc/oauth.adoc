@@ -1,2 +1,29 @@
 OAuth를 사용하여 로그인합니다.
 가능한 OAuth는 네이버, 구글, 깃허브입니다.
+
+=== Request
+OAuth Login Request 는 헤더와 바디를 갖지 않습니다.
+
+Request HTTP Sample::
+[source,http,options="nowrap"]
+----
+GET /users/oauth/code
+----
+
+=== Response
+Response HTTP Sample::
+[source,http,options="nowrap"]
+----
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<link rel="dns-prefetch" href="https://github.githubassets.com">
+<link rel="dns-prefetch" href="https://avatars0.githubusercontent.com">
+<link rel="dns-prefetch" href="https://avatars1.githubusercontent.com">
+<link rel="dns-prefetch" href="https://avatars2.githubusercontent.com">
+<link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+<link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
+<link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+----
