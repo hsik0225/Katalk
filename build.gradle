@@ -79,6 +79,7 @@ task copyDocument(type: Copy) {
 ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
 
 build {
+    println profile
     dependsOn copyDocument
 }
 
