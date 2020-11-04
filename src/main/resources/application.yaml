@@ -18,8 +18,7 @@ spring:
     password: ENC(Rrum2OUG0ImkBXCH+3BxKUqjc3KErfGq8P5HtTZKBPFi60OiB4g1xL3xALL5Cb1g)
 ---
 spring:
-  profiles:
-    active: server
+  profiles: server
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
